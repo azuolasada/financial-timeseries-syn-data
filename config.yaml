@@ -1,0 +1,20 @@
+data:
+  symbols: [BTC, ETH, XRP]
+  synthetic_paths: 0
+  syn_models: [TCVAE]
+  timeframe: 1d
+  train_start_dt: 2020-01-01
+  train_end_dt: 2024-04-01
+  val_start_dt: 2024-04-01
+  val_end_dt: 2025-04-01
+  test_start_dt: 2025-04-01
+  test_end_dt: 2026-04-01
+  n_steps_in: 6
+  n_steps_out: 5
+
+pred:
+  models: [LSTM, BD_LSTM, TCN]
+  epochs: 100
+  learning_rate: 0.001
+  batch_size: 256
+  early_stop_patience: 10
