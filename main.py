@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path
 
 from src.config_schema import ProjectConfig
-from src.data.data_manager import DataManager
+from src.data_manager.data_manager import DataManager
 from src.prediction.pred_trainer import ModelTrainer
 
 # Read the config files
@@ -26,12 +26,12 @@ except Exception as e:
     exit(1)
 
 # ===========================================================================
-#  real data only
+#  real data_analysis only
 # ===========================================================================
 
-print("Real data only simulations")
-# Load & prepare data
-print(" Starting data preparation")
+print("Real data_analysis only simulations")
+# Load & prepare data_analysis
+print(" Starting data_analysis preparation")
 data_manager = DataManager(config=cfg.data)
 data_manager.get_data()
 print("Data is prepared")
@@ -73,7 +73,7 @@ for symbol in cfg.data.symbols:
 
         results.append({
             "symbol": symbol,
-            "data": "real_only",
+            "data_analysis": "real_only",
             "data_weights": None,
             "model_name": model_name,
             "val_mse": min(history.history["val_loss"]),
@@ -137,7 +137,7 @@ for syn_model in cfg_syn.data.syn_models:
 
                 results.append({
                     "symbol": symbol,
-                    "data": syn_model,
+                    "data_analysis": syn_model,
                     "data_weights": weight,
                     "model_name": model_name,
                     "val_mse": min(history.history["val_loss"]),

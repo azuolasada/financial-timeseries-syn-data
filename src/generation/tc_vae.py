@@ -427,11 +427,11 @@ class GaussianMMD2(nn.Module):
 # ===========================================================================
 @dataclass
 class TCVAEConfig:
-    # data / latent
+    # data_analysis / latent
     data_dim:       int = 1
     data_length:    int = 60
     latent_dim:     int = 2          # per-step latent
-    latent_length:  int = 60         # latent has same length as data (causal)
+    latent_length:  int = 60         # latent has same length as data_analysis (causal)
     condition_dim:  int = 1          # set to 0 for unconditional
 
     # nets
@@ -630,7 +630,7 @@ def train_tcvae(model: TCVAE,
 
     if isinstance(data, np.ndarray):
         data = torch.tensor(data, dtype=torch.float32)
-    assert data.ndim == 3, "data must be (N, seq_len, data_dim)"
+    assert data.ndim == 3, "data_analysis must be (N, seq_len, data_dim)"
     assert data.shape[1] == cfg.data_length, (
         f"data_length mismatch: got {data.shape[1]}, "
         f"expected {cfg.data_length}")
